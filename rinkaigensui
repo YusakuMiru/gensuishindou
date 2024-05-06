@@ -1,0 +1,27 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+r1=0.5
+r2=1
+r3=1.5#減衰係数
+w1=10#角振動数
+c1=10#要素１
+c2=10#要素２
+g11=-1*r1/2+((r1**2)/4-w1**2)**(1/2)
+g12=-1*r1/2-((r1**2)/4-w1**2)**(1/2)
+g21=-1*r2/2+((r2**2)/4-w1**2)**(1/2)
+g22=-1*r2/2-((r2**2)/4-w1**2)**(1/2)
+g31=-1*r3/2-((r3**2)/4-w1**2)**(1/2)
+g32=-1*r3/2+((r3**2)/4-w1**2)**(1/2)
+
+x=np.arange(0, 10, 0.01)
+y1=c1*(np.math.e**(x*g11))+c2*(np.math.e**(x*g12))
+y2=c1*(np.math.e**(x*g21))+c2*(np.math.e**(x*g22))
+y3=c1*(np.math.e**(x*g31))+c2*(np.math.e**(x*g32))
+
+plt.plot(x,y1,color="red",linewidth=1,label="Damped1")
+plt.plot(x,y2,color="green",linewidth=1,label="Damped2")
+plt.plot(x,y3,color="blue",linewidth=1,label="Damped3")
+
+plt.legend(bbox_to_anchor=(1, 1), loc='upper right', borderaxespad=1, fontsize=15)
+plt.show()
