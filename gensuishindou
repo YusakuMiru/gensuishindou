@@ -1,0 +1,43 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+m1=10
+m2=10
+m3=10#質量
+c1=20
+c2=21
+c3=10#減衰係数
+k1=10
+k2=10#ばね定数
+k3=10#ばね定数
+
+r1=c1/2/m1
+r2=c2/2/m2
+r3=c3/2/m3
+w1=(k1/m1)**(1/2)
+w2=(k2/m2)**(1/2)
+w3=(k3/m3)**(1/2)#角振動数
+
+a1=10#要素１
+a2=10#要素２
+
+g11=-1*r1/2+((r1**2)-w1**2)**(1/2)
+g12=-1*r1/2-((r1**2)-w1**2)**(1/2)
+g21=-1*r2/2+((r2**2)-w2**2)**(1/2)
+g22=-1*r2/2-((r2**2)-w2**2)**(1/2)
+g31=-1*r3/2-((r3**2)-w3**2)**(1/2)
+g32=-1*r3/2+((r3**2)-w3**2)**(1/2)
+
+x=np.arange(0, 30.1, 0.1)
+
+y1=a1*(np.math.e**(x*g11))+a2*(np.math.e**(x*g12))
+y2=a1*(np.math.e**(x*g21))+a2*(np.math.e**(x*g22))
+y3=a1*(np.math.e**(x*g31))+a2*(np.math.e**(x*g32))
+
+plt.plot(x,y1,color="red",linewidth=1,label="臨界減衰")
+plt.plot(x,y2,color="green",linewidth=1,label="過減衰")
+plt.plot(x,y3,color="blue",linewidth=1,label="減衰振動")
+
+
+plt.legend(bbox_to_anchor=(1, 1), loc='upper right', borderaxespad=1, fontsize=15,prop={"family":"MS Gothic"})
+plt.show()
